@@ -1,0 +1,2 @@
+# django-celery-demo-project
+

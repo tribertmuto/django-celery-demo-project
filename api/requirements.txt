@@ -1,0 +1,4 @@
+Django>=3.2,<4.0
+python-dotenv>=0.19.0
+whitenoise>=5.3.0
+vercel>=0.4.1

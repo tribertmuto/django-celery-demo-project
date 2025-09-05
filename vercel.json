@@ -2,6 +2,10 @@
   "version": 2,
   "builds": [
     {
+      "src": "api/**/*.py",
+      "use": "@vercel/python@5.1.1"
+    },
+    {
       "src": "core/wsgi.py",
       "use": "@vercel/python",
       "config": {
@@ -11,9 +15,22 @@
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/api/"
+    },
+    {
       "src": "/(.*)",
       "dest": "core/wsgi.py"
     }
   ],
-  "buildCommand": "python manage.py collectstatic --noinput"
+  "buildCommand": "python manage.py collectstatic --noinput",
+  "env": {
+    "PYTHONPATH": "/var/task:/var/task/venv/lib/python3.9/site-packages"
+  },
+  "regions": ["iad1"],
+  "functions": {
+    "api/**/*.py": {
+      "maxDuration": 10
+    }
+  }
 }
